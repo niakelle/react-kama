@@ -4,7 +4,7 @@ import styles from './Profile.module.css';
 
 const Profile = () => {
   return (
-    <div className={styles.content}>
+    <div>
       <div>
         <img src="https://www.imgcorporations.com/images/bg-img.jpg" alt="" />
       </div>
