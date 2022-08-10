@@ -10,7 +10,9 @@
 }
 
 .item a:hover {
-  color: gold;
+  color: yellow;
 }
 
-.idk {}
+.item a.active {
+  color:gold;
+}

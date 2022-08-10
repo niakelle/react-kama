@@ -6,10 +6,13 @@ const MyPosts = () => {
   return (
     <div>
       My posts
-      <div>New post</div>
       <div>
-        <Post message="Hi, how are you?" likes="15"/>
-        <Post message="Welcome back" likes="20"/>
+        <textarea name="" id="" cols="30" rows="3"></textarea>
+        <button>Add post</button>
+      </div>
+      <div>
+        <Post message="Hi, how are you?" likes="15" />
+        <Post message="It's my first post" likes="20" />
       </div>
     </div>
   );

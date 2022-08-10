@@ -1,23 +1,39 @@
 import React from "react";
-import styles from './Navbar.module.css';
+import styles from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
+
+// function that checks if <a> in <NavLink> has class .active
+function checkActive() {
+  return ({ isActive }) => (isActive ? { color: "gold" } : undefined);
+}
 
 const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.item}>
-        <a href="/profile">Profile</a>
+        <NavLink to="/profile" style={checkActive()}>
+          Profile
+        </NavLink>
       </div>
       <div className={styles.item}>
-        <a href="/dialogs">Messages</a>
+        <NavLink to="/dialogs" style={checkActive()}>
+          Messages
+        </NavLink>
       </div>
       <div className={styles.item}>
-        <a href="/news">News</a>
+        <NavLink to="/news" style={checkActive()}>
+          News
+        </NavLink>
       </div>
       <div className={styles.item}>
-        <a href="/music">Music</a>
+        <NavLink to="/music" style={checkActive()}>
+          Music
+        </NavLink>
       </div>
       <div className={styles.item}>
-        <a href="/settings">Settings</a>
+        <NavLink to="/settings" style={checkActive()}>
+          Settings
+        </NavLink>
       </div>
     </nav>
   );
