@@ -4,9 +4,14 @@ import Post from "./Post/Post";
 
 const MyPosts = () => {
   let postData = [
-    {id: 1, message: "Hi, how are you?", likes: 15},
-    {id: 2, message: "It's my first post", likes: 20}
+    { id: 1, message: "Hi, how are you?", likes: 15 },
+    { id: 2, message: "It's my first post", likes: 20 },
   ];
+
+  //all objects from postData array here are converted to an array with jsx elements
+  let postElements = postData.map((p) => (
+    <Post message={p.message} likes={p.likes} />
+  ));
 
   return (
     <div className={styles.postsBlock}>
@@ -19,10 +24,7 @@ const MyPosts = () => {
           <button>Add post</button>
         </div>
       </div>
-      <div className={styles.posts}>
-        <Post message={postData[0].message} likes={postData[0].likes}/>
-        <Post message={postData[1].message} likes={postData[1].likes}/>
-      </div>
+      <div className={styles.posts}>{postElements}</div>
     </div>
   );
 };
