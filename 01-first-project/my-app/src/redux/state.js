@@ -19,6 +19,13 @@ let state = {
       { id: 3, message: "How are your holidays?" },
     ],
   },
+
+  navbar: {
+    friendsData: [
+    { id: 1, name: "Dmytry" },
+    { id: 2, name: "Sasha" },
+    { id: 3, name: "Valery" },
+  ],}
 };
 
 export default state;

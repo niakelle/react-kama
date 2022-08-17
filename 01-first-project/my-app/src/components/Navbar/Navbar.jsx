@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
+import Friends from "./Friends/Friends";
 
 // function that checks if <a> in <NavLink> has class .active
 function checkActive() {
   return ({ isActive }) => (isActive ? { color: "gold" } : undefined);
 }
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <nav className={styles.nav}>
       <div className={styles.item}>
@@ -30,9 +31,15 @@ const Navbar = () => {
           Music
         </NavLink>
       </div>
-      <div className={styles.item}>
+      <div className={`${styles.item} ${styles.marginBottom}`}>
         <NavLink to="/settings" style={checkActive()}>
           Settings
+        </NavLink>
+      </div>
+      <div className={styles.item}>
+        <NavLink to="/friends" style={checkActive()}>
+          <div>Friends</div>
+          <Friends friendsData={props.navbarData.friendsData} />
         </NavLink>
       </div>
     </nav>

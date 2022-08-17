@@ -1,0 +1,6 @@
+.friendsBlock {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 6px;
+	max-width: fit-content;
+}
