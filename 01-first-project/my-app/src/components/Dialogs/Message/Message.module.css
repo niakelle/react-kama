@@ -1,1 +1,7 @@
-.message {}
+.message {
+	max-width: fit-content;
+	padding: 5px 10px;
+	border-radius: 10px;
+	background-color: rgb(164, 211, 255);
+	margin-bottom: 5px;
+}

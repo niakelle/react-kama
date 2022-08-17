@@ -3,16 +3,12 @@ import MyPosts from "./MyPosts/MyPosts";
 import styles from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
-  let postData = [
-    { id: 1, message: "Hi, how are you?", likes: 15 },
-    { id: 2, message: "It's my first post", likes: 20 },
-  ];
+const Profile = (props) => {
 
   return (
     <div>
       <ProfileInfo />
-      <MyPosts postData={postData} />
+      <MyPosts postData={props.profilePage.postData} />
     </div>
   );
 };
