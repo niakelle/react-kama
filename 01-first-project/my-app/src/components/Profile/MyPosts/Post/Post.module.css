@@ -1,6 +1,11 @@
 .item {
   color: greenyellow;
   margin-top: 8px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
 }
 
 .img {
