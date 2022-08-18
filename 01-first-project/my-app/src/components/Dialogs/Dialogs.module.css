@@ -16,3 +16,29 @@
 .messages {
 	padding: 10px;
 }
+
+.messagesWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.newMessage {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.textArea {
+	box-sizing: border-box;
+	align-self: center;
+	width: 100%;
+	margin-bottom: 2px;
+}
+
+.sendMessageButton {
+	display: block;
+	width: fit-content;
+	
+}

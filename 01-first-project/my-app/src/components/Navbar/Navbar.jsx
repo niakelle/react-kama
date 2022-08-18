@@ -38,7 +38,7 @@ const Navbar = (props) => {
       </div>
       <div className={styles.item}>
         <NavLink to="/friends" style={checkActive()}>
-          <div>Friends</div>
+          <div className={styles.friendsBlock_heading}>Friends</div>
           <Friends friendsData={props.navbarData.friendsData} />
         </NavLink>
       </div>
