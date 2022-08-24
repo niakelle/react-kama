@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from "../render";
+let rerenderEntireTree = () => {
+  console.log("State changed");
+};
 
 let state = {
   profilePage: {
@@ -6,7 +8,7 @@ let state = {
       { id: 1, message: "Hi, how are you?", likes: 15 },
       { id: 2, message: "It's my first post", likes: 20 },
     ],
-    newPostText: 'New Post Text',
+    newPostText: "New Post Text",
   },
 
   dialogsPage: {
@@ -25,28 +27,31 @@ let state = {
 
   navbar: {
     friendsData: [
-    { id: 1, name: "Dmytry" },
-    { id: 2, name: "Sasha" },
-    { id: 3, name: "Valery" },
-  ],}
+      { id: 1, name: "Dmytry" },
+      { id: 2, name: "Sasha" },
+      { id: 3, name: "Valery" },
+    ],
+  },
 };
 
-
-export let addPost = () => {
+export const addPost = () => {
   let newPost = {
     id: 5,
     message: state.profilePage.newPostText,
-    likesCount: 0
+    likesCount: 0,
   };
   state.profilePage.postData.push(newPost);
-  state.profilePage.newPostText = '';
+  state.profilePage.newPostText = "";
   rerenderEntireTree(state);
-}
+};
 
-export let updateNewPostText = (newText) => {
-  
+export const updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
   rerenderEntireTree(state);
+};
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer;
 }
 
 export default state;

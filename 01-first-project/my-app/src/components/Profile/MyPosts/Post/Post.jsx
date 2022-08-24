@@ -11,7 +11,7 @@ const Post = (props) => {
         alt=""
         className={styles.img}
       />
-      {props.message}
+      <div>{props.message}</div>
       <div>
         <span>like {props.likes}</span>
       </div>
