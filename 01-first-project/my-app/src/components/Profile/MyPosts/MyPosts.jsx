@@ -7,18 +7,26 @@ const MyPosts = (props) => {
   let postElements = props.postData.map((p) => (
     <Post message={p.message} likes={p.likes} />
   ));
-
+  // !!! законспектировать
   let newPostElement = React.createRef();
 
+  // called onClick button
   let addPost = () => {
-    let text = newPostElement.current.value;
-    props.addPost(text);
+    //props.addPost();
+    props.dispatch({
+      type: 'ADD-POST'
+    });
   };
-
+  // called onChange textarea.value
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.updateNewPostText(text);
-  }
+    // props.updateNewPostText(text);
+    let action = {
+      type: "UPDATE-NEW-POST-TEXT",
+      newText: text
+    };
+    props.dispatch(action);
+  };
 
   return (
     <div className={styles.postsBlock}>

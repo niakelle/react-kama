@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Post.module.css";
 
 const Post = (props) => {
-  console.log(props.message);
 
   return (
     <div className={styles.item}>
