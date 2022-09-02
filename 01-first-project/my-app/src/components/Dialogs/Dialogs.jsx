@@ -2,28 +2,26 @@ import React from "react";
 import styles from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import { sendMessageCreator, updateNewMessageBodyCreator } from "../../redux/dialogs-reducer";
-
+import {
+  sendMessageCreator,
+  updateNewMessageBodyCreator,
+} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
-
+  // receiving dialogsPage state from props and shortcutting it
   let dialogsPage = props.store.getState().dialogsPage;
 
+  // drawing multiple clickable dialog items
   let dialogsElements = dialogsPage.dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));
+  // and then messages
   let messagesElements = dialogsPage.messagesData.map((m) => (
     <Message className={styles.message} message={m.message} />
   ));
   let newMessageText = dialogsPage.newMessageText;
 
-  let newMessageElement = React.createRef();
-
-  let addMessage = () => {
-    let text = newMessageElement.current.value;
-    alert(text);
-  };
-
+  // onClick function for sending messages. Uses imported action creator "sendMessageCreator"
   let onSendMessageClick = () => {
     props.store.dispatch(sendMessageCreator());
   };
@@ -38,23 +36,16 @@ const Dialogs = (props) => {
       <div className={styles.messagesWrapper}>
         <div className={styles.messages}>
           <div>{messagesElements}</div>
-          <div>
-            <div>
-              <textarea 
-              value={newMessageText}
-              onChange={onNewMessageTextChange} 
-              placeholder="Enter your message" />
-            </div>
-            <div><button onClick={onSendMessageClick}>Send</button></div>
-          </div>
         </div>
         <div className={styles.newMessage}>
           <textarea
-            ref={newMessageElement}
+            value={newMessageText}
+            onChange={onNewMessageTextChange}
+            placeholder="Enter your message"
             className={styles.textArea}
           ></textarea>
           <button
-            onClick={addMessage}
+            onClick={onSendMessageClick}
             className={styles.sendMessageButton}
           >
             Send Message
