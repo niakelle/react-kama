@@ -1,8 +1,6 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-
-const SEND_MESSAGE = "SEND-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+import dialogsReducer from "./dialogs-reducer";
+import navbarReducer from "./navbar-reducer";
+import profileReducer from "./profile-reducer";
 
 let store = {
   _state: {
@@ -11,7 +9,7 @@ let store = {
         { id: 1, message: "Hi, how are you?", likes: 15 },
         { id: 2, message: "It's my first post", likes: 20 },
       ],
-      newPostText: "New Post Text"  
+      newPostText: "New Post Text",
     },
 
     dialogsPage: {
@@ -26,7 +24,7 @@ let store = {
         { id: 2, message: "How are you?" },
         { id: 3, message: "How are your holidays?" },
       ],
-      newMessageText: ""
+      newMessageText: "",
     },
 
     navbar: {
@@ -50,38 +48,16 @@ let store = {
   },
 
   dispatch(action) {
-    // {type: 'ADD-POST'}
-    if (action.type === ADD_POST) {
-      let newPost = {
-        id: 5,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0,
-      };
-      this._state.profilePage.postData.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.dialogsPage.newMessageText = action.newMessageText;
-      this._callSubscriber(this._state);
-    } else if (action.type === SEND_MESSAGE) {
-      let body = this._state.dialogsPage.newMessageText;
-      this._state.dialogsPage.newMessageText = '';
-      this._state.dialogsPage.messagesData.push({ id: 4, message: body});
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.navbar = navbarReducer(this._state.navbar, action);
+
+    this._callSubscriber(this._state);
   },
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const updateNewPostTextActionCreator = (text) => ({
-  type: UPDATE_NEW_POST_TEXT, newText: text });
 
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageBodyCreator = (text) => ({
-  type: UPDATE_NEW_MESSAGE_TEXT, newMessageText: text });
+
 
 export default store;
 window.store = store;
