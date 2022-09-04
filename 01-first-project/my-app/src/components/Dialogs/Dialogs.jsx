@@ -9,7 +9,7 @@ import {
 
 const Dialogs = (props) => {
   // receiving dialogsPage state from props and shortcutting it
-  let dialogsPage = props.store.getState().dialogsPage;
+  let dialogsPage = props.dialogsPage;
 
   // drawing multiple clickable dialog items
   let dialogsElements = dialogsPage.dialogsData.map((dialog) => (
@@ -23,11 +23,11 @@ const Dialogs = (props) => {
 
   // onClick function for sending messages. Uses imported action creator "sendMessageCreator"
   let onSendMessageClick = () => {
-    props.store.dispatch(sendMessageCreator());
+    props.sendMessage();
   };
   let onNewMessageTextChange = (e) => {
     let body = e.target.value;
-    props.store.dispatch(updateNewMessageBodyCreator(body));
+    props.updateNewMessageBody(body);
   };
 
   return (
