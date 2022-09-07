@@ -5,7 +5,7 @@ import Post from "./Post/Post";
 const MyPosts = (props) => {
   //all objects from postData array here are converted to an array with jsx elements
   let postElements = props.postData.map((p) => (
-    <Post message={p.message} likes={p.likes} />
+    <Post message={p.message} key={p.id} likes={p.likes} />
   ));
   // !!! законспектировать
   let newPostElement = React.createRef();

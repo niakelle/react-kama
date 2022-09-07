@@ -9,11 +9,11 @@ const Dialogs = (props) => {
 
   // drawing multiple clickable dialog items
   let dialogsElements = dialogsPage.dialogsData.map((dialog) => (
-    <DialogItem name={dialog.name} id={dialog.id} />
+    <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />
   ));
   // and then messages
   let messagesElements = dialogsPage.messagesData.map((m) => (
-    <Message className={styles.message} message={m.message} />
+    <Message className={styles.message} key={m.id} message={m.message} />
   ));
   let newMessageText = dialogsPage.newMessageText;
 
