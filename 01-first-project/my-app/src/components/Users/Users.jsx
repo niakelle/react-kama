@@ -3,22 +3,34 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/profile-image.png";
 
-const Users = (props) => {
-  let getUsers = () => {
-    if (props.users.length === 0) {
+class Users extends React.Component {
+  constructor(props) {
+    super(props);
+    if (this.props.users.length === 0) {
       axios
         .get("https://jsonplaceholder.typicode.com/users")
         .then((response) => {
-          props.setUsers(response.data);
+          this.props.setUsers(response.data);
         });
     }
   };
 
-  return (
-    <div>
+  // getUsers = () => {
+  //   if (this.props.users.length === 0) {
+  //     axios
+  //       .get("https://jsonplaceholder.typicode.com/users")
+  //       .then((response) => {
+  //         this.props.setUsers(response.data);
+  //       });
+  //   }
+  // };
 
-    <div><button onClick={getUsers}>Get Users</button></div>
-      {props.users.map((u) => (
+  render() {
+    return <div>
+      <div>
+        <button onClick={this.getUsers}>Get Users</button>
+      </div>
+      {this.props.users.map((u) => (
         <div key={u.id}>
           <span>
             <div>
@@ -32,7 +44,7 @@ const Users = (props) => {
               {u.followed ? (
                 <button
                   onClick={() => {
-                    props.unfollow(u.id);
+                    this.props.unfollow(u.id);
                   }}
                 >
                   Unfollow
@@ -40,7 +52,7 @@ const Users = (props) => {
               ) : (
                 <button
                   onClick={() => {
-                    props.follow(u.id);
+                    this.props.follow(u.id);
                   }}
                 >
                   Follow
@@ -60,8 +72,8 @@ const Users = (props) => {
           </span>
         </div>
       ))}
-    </div>
-  );
-};
+    </div>;
+  }
+}
 
 export default Users;
