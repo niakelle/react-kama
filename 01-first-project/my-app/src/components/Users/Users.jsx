@@ -1,23 +1,32 @@
 import * as axios from "axios";
 import React from "react";
 import styles from "./Users.module.css";
-import userPhoto from '../../assets/profile-image.png';
+import userPhoto from "../../assets/profile-image.png";
 
 const Users = (props) => {
-  if (props.users.length === 0) {
-    axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
-      
-      props.setUsers(response.data);
-    });
-  }
+  let getUsers = () => {
+    if (props.users.length === 0) {
+      axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((response) => {
+          props.setUsers(response.data);
+        });
+    }
+  };
 
   return (
     <div>
+
+    <div><button onClick={getUsers}>Get Users</button></div>
       {props.users.map((u) => (
         <div key={u.id}>
           <span>
             <div>
-              <img src={u.picture != null ? u.picture : userPhoto} alt="" className={styles.img} />
+              <img
+                src={u.picture != null ? u.picture : userPhoto}
+                alt=""
+                className={styles.img}
+              />
             </div>
             <div>
               {u.followed ? (
