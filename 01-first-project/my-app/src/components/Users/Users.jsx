@@ -27,22 +27,20 @@ class Users extends React.Component {
     }
 
     return (
-      <div>
-        <div>
+      <div className={styles.body}>
+        <div className={styles.pagesList}>
           {pages.map(p => {
-            return <span className={this.props.currentPage === p && styles.selectedPage}
+            return <span className={`${this.props.currentPage === p && styles.selectedPage} ${styles.pageItem}`}
             onClick={(e) => { this.onPageChanged(p) }}>{p}</span>
           })}
         </div>
-        <div>
-          <button onClick={this.getUsers}>Get Users</button>
-        </div>
+        
         {this.props.users.map((u) => (
           <div key={u.id}>
             <span>
               <div>
                 <img
-                  src={u.image != null ? u.picture : userPhoto}
+                  src={u.image != null ? u.image : userPhoto}
                   alt=""
                   className={styles.img}
                 />
