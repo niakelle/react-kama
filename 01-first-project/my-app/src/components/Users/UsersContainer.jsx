@@ -35,7 +35,9 @@ class UsersContainer extends React.Component {
       .get(
         `https://dummyjson.com/users?skip=${
           this.props.pageSize * (pageNumber - 1)
-        }&limit=${this.props.pageSize}`
+        }&limit=${this.props.pageSize}`, {
+          withCredentials: true
+        }
       )
       .then((response) => {
         this.props.toggleIsFetching(false);
