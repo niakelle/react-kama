@@ -1,7 +1,33 @@
 .header {
+  box-sizing: border-box;
+  padding: 5px 10px;
   grid-area: h;
   background-color: green;
 }
 .header img {
-  width: 20px;
+  width: 50px;
+}
+
+.grey {
+  color: rgb(255, 255, 255);
+}
+
+.loginBlock {
+  float: right;
+}
+
+.loginLink {
+  color: rgb(227, 255, 233);
+}
+
+.loginLink:hover {
+  color: rgb(255, 255, 255);
+}
+
+.loginName {
+  color: rgb(227, 255, 233);
+  font-weight: bold;
+}
+.loginName:hover {
+  color: rgb(255, 255, 255);
 }
