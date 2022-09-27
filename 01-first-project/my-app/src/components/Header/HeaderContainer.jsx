@@ -13,11 +13,9 @@ class HeaderContainer extends React.Component {
         password: "0lelplR",
       })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           let {email, id, username} = response.data;
           this.props.setAuthUserData(id, email, username);
-          console.log(id, email, username);
         }
       });
   }

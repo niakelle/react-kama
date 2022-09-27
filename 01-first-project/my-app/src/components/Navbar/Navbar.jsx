@@ -36,9 +36,14 @@ const Navbar = (props) => {
           Settings
         </NavLink>
       </div>
-      <div className={`${styles.item} ${styles.marginBottom}`}>
+      <div className={`${styles.item}`}>
         <NavLink to="/users" style={checkActive()}>
           Users
+        </NavLink>
+      </div>
+      <div className={`${styles.item} ${styles.marginBottom}`}>
+        <NavLink to="/checklist" style={checkActive()}>
+          Checklist
         </NavLink>
       </div>
       <div className={styles.item}>

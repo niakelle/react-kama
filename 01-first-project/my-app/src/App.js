@@ -9,6 +9,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import ChecklistContainer from "./components/Checklist/ChecklistContainer";
 
 
 const App = (props) => {
@@ -27,6 +28,7 @@ const App = (props) => {
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/users" element={<UsersContainer />} />
+            <Route path="/checklist" element={<ChecklistContainer />} />
           </Routes>
         </div>
       </div>

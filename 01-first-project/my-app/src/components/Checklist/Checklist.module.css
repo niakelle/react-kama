@@ -1,0 +1,10 @@
+.body {
+	padding: 5px 10px;
+}
+
+.checklist {
+	display: flex;
+	flex-direction: column;
+}
+
+.checkbox {}
