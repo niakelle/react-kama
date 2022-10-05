@@ -8,40 +8,26 @@ import {
   toggleIsFetching,
   unfollow,
 } from "../../redux/users-reducer";
-import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import { usersAPI } from "../../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.toggleIsFetching(true);
-    axios
-      .get(
-        `https://dummyjson.com/users?skip=${
-          this.props.pageSize * (this.props.currentPage - 1)
-        }&limit=${this.props.pageSize}`
-      )
-      .then((response) => {
-        this.props.toggleIsFetching(false);
-        this.props.setUsers(response.data.users);
-        this.props.setUsersTotalCount(response.data.total);
-      });
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
+      this.props.toggleIsFetching(false);
+      this.props.setUsers(data.users);
+      this.props.setUsersTotalCount(data.total);
+    });
   }
 
   onPageChanged = (pageNumber) => {
     this.props.setCurrentPage(pageNumber);
     this.props.toggleIsFetching(true);
-    axios
-      .get(
-        `https://dummyjson.com/users?skip=${
-          this.props.pageSize * (pageNumber - 1)
-        }&limit=${this.props.pageSize}`, {
-          withCredentials: true
-        }
-      )
-      .then((response) => {
+      usersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
         this.props.toggleIsFetching(false);
-        this.props.setUsers(response.data.users);
+        this.props.setUsers(data.users);
       });
   };
 
