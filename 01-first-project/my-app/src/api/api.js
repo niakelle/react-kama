@@ -11,3 +11,7 @@ export const usersAPI = {
 		).then(response => response.data);
 	}
 }
+
+export const checklistAPI = {
+
+}
