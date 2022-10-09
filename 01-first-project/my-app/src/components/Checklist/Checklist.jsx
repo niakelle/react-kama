@@ -1,10 +1,10 @@
 import axios from "axios";
 import React from "react";
 import styles from "./Checklist.module.css";
+import { checklistAPI } from "../../api/api";
 
 const Checklist = (props) => {
-  console.log(props);
-
+  
   return (
     <div className={styles.body}>
       <h2>Checklist</h2>
@@ -15,17 +15,13 @@ const Checklist = (props) => {
               type="checkbox"
               checked={t.completed}
               onChange={() => {
-                axios
-                  .put(
-                    `https://dummyjson.com/todos/${t.id}`,
-                    t.completed ? { completed: false } : { completed: true }
-                  )
-                  .then((response) => {
-                    console.log(response);
-                    if (response.status === 200) {
-                      props.toggleCompleted(t.id);
-                    }
-                  });
+                props.onTodosChange(t);
+                // checklistAPI.onTodosChange(t).then((response) => {
+                //     console.log(response);
+                //     if (response.status === 200) {
+                //       props.toggleCompleted(t.id);
+                //     }
+                //   });
               }}
             />
             {t.todo}

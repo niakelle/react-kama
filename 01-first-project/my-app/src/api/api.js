@@ -13,5 +13,13 @@ export const usersAPI = {
 }
 
 export const checklistAPI = {
-
+	getTodos() {
+		return instance.get("todos?limit=5", {});
+	},
+	onTodosChange (todo) {
+		return instance.put(
+			`todos/${todo.id}`,
+			todo.completed ? { completed: false } : { completed: true }
+		)
+	}
 }
