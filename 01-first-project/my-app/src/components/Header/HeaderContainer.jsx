@@ -1,23 +1,11 @@
-import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
-import { setAuthUserData } from "../../redux/auth-reducer";
+import { getAuthUserData } from "../../redux/auth-reducer";
 import Header from "./Header";
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    axios
-      .post(`https://dummyjson.com/auth/login`, {
-        withCredentials: true,
-        username: "kminchelle",
-        password: "0lelplR",
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          let {email, id, username} = response.data;
-          this.props.setAuthUserData(id, email, username);
-        }
-      });
+      this.props.getAuthUserData();
   }
 
   render() {
@@ -30,5 +18,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  setAuthUserData,
+  getAuthUserData,
 })(HeaderContainer);

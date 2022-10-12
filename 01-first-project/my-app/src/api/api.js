@@ -9,6 +9,20 @@ export const usersAPI = {
 		return instance.get(`users?skip=${pageSize * (currentPage - 1)
 		}&limit=${pageSize}`
 		).then(response => response.data);
+	},
+	getProfile(userId) {
+		return instance.get(`users/${userId}`);
+	}
+}
+
+export const authAPI = {
+	me() {
+		return instance
+		.post(`auth/login`, {
+			withCredentials: true,
+			username: "kminchelle",
+			password: "0lelplR",
+		})
 	}
 }
 

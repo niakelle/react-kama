@@ -2,8 +2,9 @@ import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import Profile from "./Profile";
-import { setUserProfile } from "../../redux/profile-reducer";
+import { getUserProfile } from "../../redux/profile-reducer";
 import withRouter from "../common/WithRouter/withRouter";
+import { usersAPI } from "../../api/api";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -11,9 +12,7 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    axios.get(`https://dummyjson.com/users/${userId}`).then((response) => {
-      this.props.setUserProfile(response.data);
-    });
+    this.props.getUserProfile(userId);
   }
 
   render() {
@@ -28,6 +27,6 @@ let mapStateToProps = (state) => ({
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
 // коннект работает с store, а в классе компоненты контейнера происходит запрос на сервер
-export default connect(mapStateToProps, { setUserProfile })(
+export default connect(mapStateToProps, { getUserProfile })(
   WithUrlDataContainerComponent
 );
