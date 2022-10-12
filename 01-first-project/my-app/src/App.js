@@ -10,6 +10,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ChecklistContainer from "./components/Checklist/ChecklistContainer";
+import Login from "./components/Login/Login";
 
 
 const App = (props) => {
@@ -29,6 +30,7 @@ const App = (props) => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/users" element={<UsersContainer />} />
             <Route path="/checklist" element={<ChecklistContainer />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </div>

@@ -2,22 +2,19 @@ import React from "react";
 import styles from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import { Navigate } from "react-router-dom";
 
 const Dialogs = (props) => {
-  // receiving dialogsPage state from props and shortcutting it
   let dialogsPage = props.dialogsPage;
 
-  // drawing multiple clickable dialog items
   let dialogsElements = dialogsPage.dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />
   ));
-  // and then messages
   let messagesElements = dialogsPage.messagesData.map((m) => (
     <Message className={styles.message} key={m.id} message={m.message} />
   ));
   let newMessageText = dialogsPage.newMessageText;
 
-  // onClick function for sending messages. Uses imported action creator "sendMessageCreator"
   let onSendMessageClick = () => {
     props.sendMessage();
   };
@@ -25,6 +22,8 @@ const Dialogs = (props) => {
     let body = e.target.value;
     props.updateNewMessageBody(body);
   };
+
+  if (!props.isAuthfalse) return <Navigate to={"/login"}/>
 
   return (
     <div className={styles.dialogs}>
