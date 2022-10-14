@@ -28,7 +28,7 @@ let mapStateToProps = (state) => ({
 export default compose(
   connect(mapStateToProps, { getUserProfile }),
   withRouter,
-  withAuthRedirect
+  // withAuthRedirect
 )(ProfileContainer)
 
 // коннект работает с store, а в классе компоненты контейнера происходит запрос на сервер

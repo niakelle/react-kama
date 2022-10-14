@@ -1,6 +1,7 @@
 import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import styles from "./ProfileInfo.module.css";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -48,6 +49,8 @@ const ProfileInfo = (props) => {
           {props.profile.domain}
         </div>
       </div>
+
+      <ProfileStatus status={"Test status message"} />
     </div>
   );
 };
