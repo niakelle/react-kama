@@ -4,17 +4,27 @@ import styles from "./ProfileStatus.module.css";
 class ProfileStatus extends React.Component {
   state = {
     editMode: false,
+    status: this.props.status
   };
 
-  activateEditMode() {
+  activateEditMode = () => {
     this.setState({
       editMode: true,
     });
   }
-  deactivateEditMode() {
+  deactivateEditMode = () => {
     this.setState({
       editMode: false,
     });
+    // хардкодим айди чтобы позже полностью убрать параметр айди из функции
+    this.props.updateStatus(2, this.state.status);
+  }
+
+  onStatusChange = (e) => {
+    this.setState({
+      status: e.currentTarget.value
+    });
+    
   }
 
   render() {
@@ -22,17 +32,18 @@ class ProfileStatus extends React.Component {
       <div className={styles.status}>
         {!this.state.editMode && (
           <div>
-            <span onDoubleClick={this.activateEditMode.bind(this)}>
-              {this.props.status}
+            <span onDoubleClick={this.activateEditMode}>
+              {this.props.status || "-----"}
             </span>
           </div>
         )}
         {this.state.editMode && (
           <div>
             <input
+            onChange={this.onStatusChange}
               type="text"
-              value={this.props.status}
-              onBlur={this.deactivateEditMode.bind(this)}
+              value={this.state.status}
+              onBlur={this.deactivateEditMode}
 							autoFocus={true}
             />
           </div>

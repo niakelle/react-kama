@@ -50,7 +50,7 @@ const ProfileInfo = (props) => {
         </div>
       </div>
 
-      <ProfileStatus status={"Test status message"} />
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
     </div>
   );
 };
