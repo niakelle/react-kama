@@ -20,6 +20,7 @@ const LoginForm = (props) => {
   );
 };
 
+// название этой конкретной формы "login"
 const LoginReduxForm = reduxForm({
   form: "login",
 })(LoginForm);

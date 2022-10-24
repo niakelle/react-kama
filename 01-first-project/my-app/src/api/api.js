@@ -31,7 +31,7 @@ export const authAPI = {
 		.post(`auth/login`, {
 			withCredentials: true,
 			username: "kminchelle",
-			// password: "0lelplR",
+			password: "0lelplR",
 		})
 	}
 }
