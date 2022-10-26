@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { authAPI } from "../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
@@ -39,8 +40,12 @@ export const login = (username, password) => (dispatch) => {
     if (response.status === 200) {
       dispatch(getAuthUserData());
     }
-  });
+  }).catch((error) => {
+    let message = error.message.length > 0 ? error.message : "Whoops! Error." 
+    dispatch(stopSubmit("login", {_error: message}));
+  })
 };
+
 export const logout = () => (dispatch) => {
   dispatch(setAuthUserData(null, null, null, false));
 };
