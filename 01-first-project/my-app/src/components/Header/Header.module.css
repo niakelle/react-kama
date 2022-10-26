@@ -31,3 +31,13 @@
 .loginName:hover {
   color: rgb(255, 255, 255);
 }
+
+.logoutButton {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.logoutButton:hover {
+  box-sizing: border-box;
+  background-color: rgba(255,255,255,0.9);
+}

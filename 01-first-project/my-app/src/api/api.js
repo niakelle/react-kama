@@ -26,15 +26,21 @@ export const profileAPI = {
 }
 
 export const authAPI = {
-	me() {
-		return instance
-		.post(`auth/login`, {
-			withCredentials: true,
-			username: "kminchelle",
-			password: "0lelplR",
-		})
+  me() {
+    return instance.post(`auth/login`, {
+      withCredentials: true,
+      username: "kminchelle",
+      password: "0lelplR",
+    });
+  },
+	login( username, password ) {
+		return instance.post(`auth/login`, { username, password });
+	},
+	logout() {
+		console.warn('There is no "logout" method in fake API we using. Please act like your logout request fulfilled.')
+		return instance.delete(`auth/login`);
 	}
-}
+};
 
 export const checklistAPI = {
 	getTodos() {
