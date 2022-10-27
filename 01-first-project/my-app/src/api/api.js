@@ -26,11 +26,11 @@ export const profileAPI = {
 }
 
 export const authAPI = {
-  me() {
+  me(username, password) {
     return instance.post(`auth/login`, {
       withCredentials: true,
-      username: "kminchelle",
-      password: "0lelplR",
+      username: username,
+      password: password,
     });
   },
 	login( username, password ) {

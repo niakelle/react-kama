@@ -26,8 +26,8 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
   type: SET_USER_DATA,
   payload: { userId, email, login, isAuth },
 });
-export const getAuthUserData = () => (dispatch) => {
-  authAPI.me().then((response) => {
+export const getAuthUserData = (username, password) => (dispatch) => {
+  authAPI.me(username, password).then((response) => {
     if (response.status === 200) {
       let { email, id, username } = response.data;
       dispatch(setAuthUserData(id, email, username, true));
@@ -38,7 +38,7 @@ export const getAuthUserData = () => (dispatch) => {
 export const login = (username, password) => (dispatch) => {
   authAPI.login(username, password).then((response) => {
     if (response.status === 200) {
-      dispatch(getAuthUserData());
+      dispatch(getAuthUserData(username, password));
     }
   }).catch((error) => {
     let message = error.message.length > 0 ? error.message : "Whoops! Error." 

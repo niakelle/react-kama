@@ -9,17 +9,17 @@ import {
 import withRouter from "../common/WithRouter/withRouter";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
-import { Navigate } from "react-router-dom";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    console.log(this.props);
     let userId = this.props.router.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
     }
-    this.props.getUserProfile(userId);
-    this.props.getStatus(userId);
+    if (userId) {
+      this.props.getUserProfile(userId);
+      this.props.getStatus(userId);
+    }
   }
 
   render() {
@@ -48,4 +48,4 @@ export default compose(
   // withAuthRedirect
 )(ProfileContainer);
 
-// коннект работает с store, а в классе компоненты контейнера происходит запрос на сервер
+// коннект работает с store, а в классе компонента контейнера происходит запрос на сервер
