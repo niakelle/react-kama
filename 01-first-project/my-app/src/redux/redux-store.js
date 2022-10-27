@@ -7,6 +7,7 @@ import usersReduser from "./users-reducer";
 import checklistReducer from "./checklist-reducer";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer} from "redux-form";
+import appReducer from "./app-reducer";
 
 let reducers = combineReducers({
 	profilePage: profileReducer,
@@ -15,7 +16,8 @@ let reducers = combineReducers({
 	usersPage: usersReduser,
 	auth: authReducer,
 	checklistPage: checklistReducer,
-	form: formReducer
+	form: formReducer,
+	app: appReducer
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
