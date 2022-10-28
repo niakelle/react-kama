@@ -5,7 +5,12 @@ import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
-    return <Preloader />;
+    return (
+      <>
+        <Preloader />
+        <div>You're probably not logged in.</div>
+      </>
+    );
   }
 
   return (
