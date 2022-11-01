@@ -1,0 +1,31 @@
+.paginator {
+	display: flex;
+	align-items: center;
+	margin-bottom: 8px;
+}
+
+.selectedPage {
+	font-weight: bold;
+	font-size: 22px;
+}
+
+.pageItem {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 24px;
+	height: fit-content;
+	text-align: center;
+	padding: 3px;
+	background-color: rgba(224, 234, 255, 0.8);
+	margin-right: 5px;
+}
+
+.selectedPage.pageItem {
+	background-color: white;
+	width: 34px;
+	padding: 3px;
+}
+
+.paginatorPrevButton {
+	margin-right: 5px;
+}
