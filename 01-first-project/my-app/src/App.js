@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
@@ -6,8 +6,6 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ChecklistContainer from "./components/Checklist/ChecklistContainer";
 import Login from "./components/Login/Login";
@@ -16,7 +14,10 @@ import withRouter from "./components/common/WithRouter/withRouter";
 import { initializeApp } from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import store from "./redux/redux-store";
-
+// import DialogsContainer from "./components/Dialogs/DialogsContainer";
+// import ProfileContainer from "./components/Profile/ProfileContainer";
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 
 class App extends React.Component {
   componentDidMount() {
@@ -29,26 +30,26 @@ class App extends React.Component {
     }
 
     return (
-
-        <div className="app-wrapper">
-          <HeaderContainer />
-          <Navbar navbarData={store.getState().navbar}/>
-          <div className="app-wrapper-content">
-            <Routes>
-              <Route path="/profile" element={<ProfileContainer />}> 
-                <Route path=":userId" element={<ProfileContainer />}/>
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <Navbar navbarData={store.getState().navbar} />
+        <div className="app-wrapper-content">
+        <Suspense fallback={<Preloader/>}>
+          <Routes>
+              <Route path="/profile" element={<ProfileContainer />}>
+                <Route path=":userId" element={<ProfileContainer />} />
               </Route>
               <Route path="/dialogs/*" element={<DialogsContainer />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/music" element={<Music />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/users" element={<UsersContainer />} />
-              <Route path="/checklist" element={<ChecklistContainer />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </div>
+            <Route path="/news" element={<News />} />
+            <Route path="/music" element={<Music />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/users" element={<UsersContainer />} />
+            <Route path="/checklist" element={<ChecklistContainer />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+          </Suspense>
         </div>
-
+      </div>
     );
   }
 }
