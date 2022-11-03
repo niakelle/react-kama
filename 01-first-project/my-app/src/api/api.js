@@ -27,6 +27,12 @@ export const profileAPI = {
 
 export const authAPI = {
   me(username, password) {
+		if (!username || !password) {
+			return new Promise((resolve, reject) => {
+				console.warn('Wrong username or password.');
+				resolve('Wrong username or password');
+			})
+		}
     return instance.post(`auth/login`, {
       withCredentials: true,
       username: username,
