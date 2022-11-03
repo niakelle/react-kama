@@ -22,6 +22,7 @@ const ProfileInfo = (props) => {
           alt=""
           className={styles.img}
         />
+        {/* { props.isOwner && <div className={styles.marginLeft8px}>It's your profile.</div>} */}
       </div>
 
       <div className={styles.descriptionBlock}>
